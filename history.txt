@@ -1,0 +1,14 @@
+Constrói uma nova imagem Docker a partir do Dockerfile no diretório atual e a marca com o nome "miniep":
+
+  docker build . -t miniep
+
+Executa um contêiner com o nome "miniep" a partir da imagem "miniep" em segundo plano, mapeando a porta 8000
+do host para a porta 80 do contêiner:
+
+  docker run --rm --name miniep -d -p 8000:80 miniep
+
+Executa um contêiner com o nome "miniep" a partir da imagem "miniep" em segundo plano, mapeando a porta 8000
+do host para a porta 80 do contêiner e também mapeando o diretório atual do host para os diretórios "/etc/caddy"
+e "/usr/src/pages" dentro do contêiner, permitindo atualização instantânea em caso de alterações de arquivos:
+
+  docker run --rm --name miniep -d -p 8000:80 -v $(pwd):/etc/caddy -v $(pwd):/usr/src/pages miniep
